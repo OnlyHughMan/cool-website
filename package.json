@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "cool-website",
   "version": "1.0.0",
-  "description": "minimal boilerplate to avoid having to do this all the time 💡",
+  "description": "A personal website",
   "main": "index.js",
   "author": "onlyhughman",
   "license": "MIT",
