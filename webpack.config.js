@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 
-
 module.exports = {
   entry: './src/index.js',
   module: {
@@ -9,8 +8,12 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.(css|less)$/,
+        use: ["style-loader", "css-loader"]
       }
-    ]
+    ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
