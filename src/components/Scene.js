@@ -9,6 +9,7 @@ class Scene extends Component {
     this.stop = this.stop.bind(this)
     this.animate = this.animate.bind(this)
     this.cubes = []
+    this.tori = []
   }
 
 
@@ -35,8 +36,12 @@ class Scene extends Component {
     const cubeTwo = this.createCube([1, 0.5, 1, 2], 'purple')
     const cubeThree = this.createCube([1, 0.5, 1.5, 3], 'green')
     
+    const torusOne = this.createTorus([1, 0.1, 12, 100, 2*Math.PI], 'pink')
+    const torusTwo = this.createTorus([1, 0.1, 12, 100, 2*Math.PI], 'pink')
     camera.position.z = 4
     scene.add(cubeOne)
+    scene.add(torusOne)
+    scene.add(torusTwo)
     scene.add(cubeTwo)
     scene.add(cubeThree)
     renderer.setClearColor('#000000')
@@ -50,6 +55,9 @@ class Scene extends Component {
     this.cubes.push(cubeOne);
     this.cubes.push(cubeTwo);
     this.cubes.push(cubeThree);
+
+    this.tori.push(torusOne, torusTwo);
+
     this.mount.appendChild(this.renderer.domElement)
     this.start()
   }
@@ -57,6 +65,12 @@ class Scene extends Component {
   createCube(x, colour) {
     let geometry = new THREE.BoxGeometry(...x);
     let material = new THREE.MeshBasicMaterial({ color: colour });
+    return new THREE.Mesh(geometry, material);
+  }
+
+  createTorus(x, colour) {
+    let geometry = new THREE.TorusGeometry(...x);
+    let material = new THREE.MeshBasicMaterial({ color: colour});
     return new THREE.Mesh(geometry, material);
   }
 
@@ -79,6 +93,10 @@ class Scene extends Component {
     this.cubes.map((cube, i) => {
       cube.rotation.x += 0.01 + i * 0.02
       cube.rotation.y += 0.01 + i * 0.02
+    });
+    this.tori.map((torus, i) => {
+      torus.rotation.x += 0.01 + i * 0.02
+      torus.rotation.y -= 0.11 + i * 0.02
     });
 
     this.renderScene()
