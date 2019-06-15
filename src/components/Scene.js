@@ -8,6 +8,7 @@ class Scene extends Component {
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
     this.animate = this.animate.bind(this)
+    this.cubes = []
   }
 
 
@@ -20,7 +21,7 @@ class Scene extends Component {
     scene.add(ambientLight);
 
     const camera = new THREE.PerspectiveCamera(
-      30,
+      45,
       window.innerWidth / window.innerHeight,
       1,
       1000
@@ -30,28 +31,32 @@ class Scene extends Component {
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize( window.innerWidth, window.innerHeight );
 
-    // const geometry = new THREE.BoxGeometry(1, 1, 1)
-    // const material = new THREE.MeshBasicMaterial({ color: '#433F81' })
-    const cube = this.createCube()
+    const cubeOne = this.createCube([0.8, 1, 1, 2,2], 'blue')
+    const cubeTwo = this.createCube([1, 0.5, 1, 2], 'purple')
+    const cubeThree = this.createCube([1, 0.5, 1.5, 3], 'green')
     
     camera.position.z = 4
-    scene.add(cube)
+    scene.add(cubeOne)
+    scene.add(cubeTwo)
+    scene.add(cubeThree)
     renderer.setClearColor('#000000')
     renderer.setSize(width, height)
     
     this.camera = camera
     this.scene = scene
     this.renderer = renderer
-    // this.material = material
-    this.cube = cube
 
+    this.cube = cubeOne;
+    this.cubes.push(cubeOne);
+    this.cubes.push(cubeTwo);
+    this.cubes.push(cubeThree);
     this.mount.appendChild(this.renderer.domElement)
     this.start()
   }
 
-  createCube() {
-    let geometry = new THREE.BoxGeometry(1, 0.8, 1);
-    let material = new THREE.MeshBasicMaterial({ color: 'purple' });
+  createCube(x, colour) {
+    let geometry = new THREE.BoxGeometry(...x);
+    let material = new THREE.MeshBasicMaterial({ color: colour });
     return new THREE.Mesh(geometry, material);
   }
 
@@ -71,8 +76,10 @@ class Scene extends Component {
   }
 
   animate() {
-    this.cube.rotation.x += 0.01
-    this.cube.rotation.y += 0.01
+    this.cubes.map((cube, i) => {
+      cube.rotation.x += 0.01 + i * 0.02
+      cube.rotation.y += 0.01 + i * 0.02
+    });
 
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)
