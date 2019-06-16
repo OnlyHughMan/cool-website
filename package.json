@@ -6,7 +6,8 @@
   "author": "onlyhughman",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
