@@ -22,12 +22,12 @@ class Scene extends Component {
       70,
       width / height,
       2,
-      1000
+      6
     );
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize( width, height );
-    camera.position.z = 4
+    camera.position.z = 3.2
 
     let spiral = new THREE.Line(
       new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'red'}));

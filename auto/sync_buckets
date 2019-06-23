@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+aws s3 sync . s3://www.hugh.codes/ # change this to your bucket
+aws s3 sync . s3://hugh.codes/ # change this to your bucket
