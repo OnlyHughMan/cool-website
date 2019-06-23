@@ -1,13 +1,12 @@
 provider "aws" {
-  region = "ap-southeast-2"
+  region                  = "us-east-1"
   shared_credentials_file = "~/.aws/credentials"
-
 }
 
 variable "www_domain_name" {
-  default = "www.hughvidler.com"
+  default = "www.hugh.codes"
 }
 
 variable "root_domain_name" {
-  default = "hughvidler.com"
+  default = "hugh.codes"
 }

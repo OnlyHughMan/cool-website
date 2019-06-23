@@ -24,10 +24,10 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     // `origin_id` above.
-    target_origin_id       = "${var.www_domain_name}"
-    min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
+    target_origin_id = "${var.www_domain_name}"
+    min_ttl          = 0
+    default_ttl      = 86400
+    max_ttl          = 31536000
 
     forwarded_values {
       query_string = false

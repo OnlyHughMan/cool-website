@@ -29,41 +29,41 @@ class Scene extends Component {
     renderer.setSize( width, height );
     camera.position.z = 4
 
-    var spiral = new THREE.Line(
+    let spiral = new THREE.Line(
       new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'red'}));
     spiral.geometry.dynamic = true;
     this.spiral = spiral;
 
-    var spiralTwo = new THREE.Line(
+    let spiralTwo = new THREE.Line(
       new THREE.Geometry(), new THREE.LineBasicMaterial({color: '#ff953f'}));
     spiralTwo.geometry.dynamic = true;
     this.spiralTwo = spiralTwo
-    
-    var spiralThree = new THREE.Line(
+
+    let spiralThree = new THREE.Line(
       new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'red'}));
     spiralThree.geometry.dynamic = true;
     this.spiralThree = spiralThree
     // ES6 Math polyfill
-    var tanh = Math.tanh || function tanh(x) {
+    let tanh = Math.tanh || function tanh(x) {
       return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
-    }; 
-    var cosh = Math.cosh || function cosh(x) {
+    };
+    let cosh = Math.cosh || function cosh(x) {
       return (Math.exp(x) + Math.exp(-x)) / 2;
-    }; 
-    var sinh = Math.sinh || function sinh(x) {
+    };
+    let sinh = Math.sinh || function sinh(x) {
       return (Math.exp(x) - Math.exp(-x)) / 2;
     };
     // sphere spiral
-    var sz = 16, cxy = 100, cz = cxy * sz;
-    var hxy = Math.PI / cxy, hz = Math.PI / cz;
-    var r = 1.2;
-    for (var i = -cz; i < cz; i++) {
-      var lxy = i * hxy;
-      var lz = i * hz;
-      var rxy = r /  cosh(lz);
-      var x = rxy * Math.cos(lxy);
-      var y = rxy * Math.sin(lxy);
-      var z = r * tanh(lz);
+    let sz = 16, cxy = 100, cz = cxy * sz;
+    let hxy = Math.PI / cxy, hz = Math.PI / cz;
+    let r = 1.2;
+    for (let i = -cz; i < cz; i++) {
+      let lxy = i * hxy;
+      let lz = i * hz;
+      let rxy = r /  cosh(lz);
+      let x = rxy * Math.cos(lxy);
+      let y = rxy * Math.sin(lxy);
+      let z = r * tanh(lz);
       spiral.geometry.vertices.push(new THREE.Vector3(x, y, z));
       spiralTwo.geometry.vertices.push((new THREE.Vector3(x*1.007, y*1.007, z*1.007)));
       spiralThree.geometry.vertices.push((new THREE.Vector3(x*.999, y*.999, z*.999)));
@@ -83,7 +83,7 @@ class Scene extends Component {
 
     scene.add(lightIn);
     scene.add(lightOut);
-    
+
     this.camera = camera
     this.scene = scene
     this.renderer = renderer
