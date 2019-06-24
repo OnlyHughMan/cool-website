@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <div className="app">
         <div className='title'>
-          <h1 className='head-title-first-name'>HUGH VIDLER</h1>
-          <h1 className='side-title'>UNTITLED</h1>
+          {/* <h1 className='head-title-first-name'>HUGH VIDLER</h1> */}
+          {/* <h1 className='side-title'>UNTITLED</h1> */}
         </div>
         <div className='spiral-container'>
           <Scene className='three-canvas'/>
