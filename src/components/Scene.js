@@ -35,7 +35,7 @@ class Scene extends Component {
     this.spiral = spiral;
 
     let spiralTwo = new THREE.Line(
-      new THREE.Geometry(), new THREE.LineBasicMaterial({color: '#ff953f'}));
+      new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'black'}));
     spiralTwo.geometry.dynamic = true;
     this.spiralTwo = spiralTwo
 
@@ -55,7 +55,7 @@ class Scene extends Component {
     };
     // sphere spiral
     let sz = 16, cxy = 100, cz = cxy * sz;
-    let hxy = Math.PI / cxy, hz = Math.PI / cz;
+    let hxy = Math.PI ** 2, hz = Math.PI / 1000;
     let r = 1.2;
     for (let i = -cz; i < cz; i++) {
       let lxy = i * hxy;
