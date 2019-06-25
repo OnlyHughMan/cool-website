@@ -30,7 +30,7 @@ class Scene extends Component {
     camera.position.z = 3.2
 
     let spiral = new THREE.Line(
-      new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'black'}));
+      new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'white'}));
     spiral.geometry.dynamic = true;
     this.spiral = spiral;
 
@@ -43,6 +43,10 @@ class Scene extends Component {
       new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'red'}));
     spiralThree.geometry.dynamic = true;
     this.spiralThree = spiralThree
+    let spiralFour = new THREE.Line(
+      new THREE.Geometry(), new THREE.LineBasicMaterial({color: 'black'}));
+    spiralFour.geometry.dynamic = true;
+    this.spiralFour = spiralFour
     // ES6 Math polyfill
     let tanh = Math.tanh || function tanh(x) {
       return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
@@ -60,16 +64,18 @@ class Scene extends Component {
     for (let i = -cz; i < cz; i++) {
       let lxy = i * hxy;
       let lz = i * hz;
-      let rxy = r /  cosh(lz);
-      let x = rxy * Math.cos(lxy);
-      let y = rxy * Math.sin(lxy);
+      let rxy = r *  cosh(lz);
+      let x = -rxy * Math.cos(lxy);
+      let y = -rxy * Math.sin(lxy);
       let z = r * tanh(lz);
       spiral.geometry.vertices.push(new THREE.Vector3(x, y, z));
       spiralTwo.geometry.vertices.push((new THREE.Vector3(x*1.007, y*1.007, z*1.007)));
       spiralThree.geometry.vertices.push((new THREE.Vector3(x*.99, y*.99, z*.99)));
+      spiralFour.geometry.vertices.push((new THREE.Vector3(x*.99, y*.99, z*.99)));
     }
     scene.add(spiralThree);
-    scene.add(spiralTwo);
+    scene.add(spiralFour);
+    // scene.add(spiralTwo);
     scene.add(spiral);
     spiralTwo.rotation.set(0, 12, 0)
     spiralThree.rotation.set(0, 12, 0)
@@ -77,6 +83,7 @@ class Scene extends Component {
     spiral.position.set(0.02, 0, 0)
     spiralTwo.position.set(2, 0, 0)
     spiralThree.position.set(0.012, 0.022, 0)
+    spiralFour.position.set(0.01, 0.022, 0)
     renderer.setSize(width, height)
 
     // const lightIn = new THREE.PointLight("#4CAF50", 30);
@@ -111,9 +118,9 @@ class Scene extends Component {
   }
 
   animate() {
-    this.spiral.rotation.z += 0.00305 ;
+    this.spiral.rotation.z += 0.00205 ;
     // this.spiral.rotation.x += 0.001 ;
-    this.spiralTwo.rotation.z += 0.000000505001 ;
+    // this.spiralTwo.rotation.z += 0.000000505001 ;
     // this.spiralTwo.rotation.x += 0.01 ;
     this.spiralThree.rotation.z -= 0.00000705001 ;
     // this.spiralThree.rotation.x += 0.001 ;
